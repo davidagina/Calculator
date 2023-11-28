@@ -13,6 +13,9 @@ public class CalculatorUi extends JFrame implements ActionListener {
     private JTextField displayTextField;
     private JButton[] buttons;
 
+    private boolean pressedOperator = false;
+    private boolean pressedEquals = false;
+
     public CalculatorUi(){
         super(CommonConstants.APP_NAME);
         setSize(CommonConstants.APP_SIZE[0], CommonConstants.APP_SIZE[1]);
@@ -86,7 +89,7 @@ public class CalculatorUi extends JFrame implements ActionListener {
             case 2:
                 return "9";
             case 3:
-                return "-";
+                return "/";
             case 4:
                 return "4";
             case 5:
@@ -102,15 +105,15 @@ public class CalculatorUi extends JFrame implements ActionListener {
             case 10:
                 return "3";
             case 11:
-                return "0";
+                return "-";
             case 12:
-                return ".";
+                return "0";
             case 13:
-                return "+";
+                return ".";
             case 14:
-                return "=";
+                return "+";
             case 15:
-                return "/";
+                return "=";
         }
         return "";
     }
@@ -118,6 +121,17 @@ public class CalculatorUi extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String buttonCommand = e.getActionCommand();
+        if (buttonCommand.matches("[0-9]")){
+            if (pressedEquals || pressedOperator || displayTextField.getText().equals("0"))
+                displayTextField.setText(buttonCommand);
+            else
+                displayTextField.setText(displayTextField.getText() + buttonCommand);
 
+            pressedOperator = false;
+            pressedEquals = false;
+        } else if (buttonCommand.equals("=")){
+
+        }
     }
 }
