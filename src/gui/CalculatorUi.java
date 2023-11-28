@@ -65,6 +65,13 @@ public class CalculatorUi extends JFrame implements ActionListener {
 
         this.getContentPane().add(buttonPanel);
 
+        springLayout.putConstraint(SpringLayout.NORTH, buttonPanel,
+                CommonConstants.BUTTON_SPRINGLAYOUT_NORTHPAD,
+                SpringLayout.NORTH, this);
+
+        springLayout.putConstraint(SpringLayout.WEST, buttonPanel,
+                CommonConstants.BUTTON_SPRINGLAYOUT_WESTPAD,
+                SpringLayout.WEST, this);
     }
 
     public String getButtonLabel(int buttonIndex){
