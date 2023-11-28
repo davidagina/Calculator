@@ -1,5 +1,8 @@
 package constants;
 
+import javax.swing.plaf.PanelUI;
+import java.security.PublicKey;
+
 public class CommonConstants {
 
     public static final String APP_NAME = "Calculator";
@@ -16,4 +19,6 @@ public class CommonConstants {
 
     public static final int BUTTON_SPRINGLAYOUT_NORTHPAD = 150;
     public static final int BUTTON_SPRINGLAYOUT_WESTPAD = 40;
+    public static final int BUTTON_HGAP = 25;
+    public static final int BUTTON_VGAP = 25;
 }
