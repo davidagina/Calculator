@@ -63,6 +63,9 @@ public class CalculatorUi extends JFrame implements ActionListener {
             buttonPanel.add(button);
         }
 
+        gridLayout.setHgap(CommonConstants.BUTTON_HGAP);
+        gridLayout.setVgap(CommonConstants.BUTTON_VGAP);
+
         this.getContentPane().add(buttonPanel);
 
         springLayout.putConstraint(SpringLayout.NORTH, buttonPanel,
