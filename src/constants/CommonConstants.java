@@ -13,4 +13,7 @@ public class CommonConstants {
     public static final int BUTTON_COLCOUNT = 4;
     public static final int BUTTON_COUNT = 16;
     public static final int BUTTON_FONTSIZE = 46;
+
+    public static final int BUTTON_SPRINGLAYOUT_NORTHPAD = 150;
+    public static final int BUTTON_SPRINGLAYOUT_WESTPAD = 40;
 }
