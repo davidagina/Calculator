@@ -1,6 +1,7 @@
 package gui;
 
 import constants.CommonConstants;
+import service.CalculatorService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,8 @@ public class CalculatorUi extends JFrame implements ActionListener {
     private boolean pressedOperator = false;
     private boolean pressedEquals = false;
 
+    private CalculatorService calculatorService;
+
     public CalculatorUi(){
         super(CommonConstants.APP_NAME);
         setSize(CommonConstants.APP_SIZE[0], CommonConstants.APP_SIZE[1]);
@@ -24,7 +27,11 @@ public class CalculatorUi extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setLayout(springLayout);
 
+        calculatorService = new CalculatorService();
+
         addGuiComponents();
+
+
     }
 
     public void addGuiComponents(){
@@ -132,6 +139,42 @@ public class CalculatorUi extends JFrame implements ActionListener {
             pressedEquals = false;
         } else if (buttonCommand.equals("=")){
 
+            calculatorService.setNum2(Double.parseDouble(displayTextField.getText()));
+
+            double result = 0;
+            switch(calculatorService.getMathSymbol()){
+                case '+':
+                    result = calculatorService.add();
+                    break;
+                case '-':
+                    result = calculatorService.subtract();
+                    break;
+                case '/':
+                    result = calculatorService.divide();
+                    break;
+                case 'x':
+                    result = calculatorService.multiply();
+                    break;
+            }
+
+            displayTextField.setText(Double.toString(result));
+
+            pressedEquals = true;
+            pressedOperator = false;
+
+        } else if(buttonCommand.equals(".")){
+            if (!displayTextField.getText().contains(".")){
+                displayTextField.setText(displayTextField.getText()
+                + buttonCommand);
+            }
+        } else {
+            if (!pressedOperator)
+                calculatorService.setNum1(Double.parseDouble(displayTextField.getText()));
+
+            calculatorService.setMathSymbol(buttonCommand.charAt(0));
+
+            pressedOperator = true;
+            pressedEquals = false;
         }
     }
 }
